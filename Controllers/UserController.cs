@@ -29,5 +29,16 @@ namespace Food.Controllers
 			return Ok(user);
 		}
 
+		[HttpGet("{id}")]
+		public ActionResult<User> GetUserById(int id)
+		{
+			var userModel = _userService.GetById(id);
+			if (userModel != null)
+			{
+				return Ok(userModel);
+			}
+			return NotFound();
+		}
+
 	}
 }

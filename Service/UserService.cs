@@ -28,5 +28,25 @@ namespace Food.Service
 			}
 			return user;
 		}
+
+		public User GetById(int id)
+		{
+			try
+			{
+				using(var unitOfWork = new UnitOfWork(new Context()))
+				{
+					var user = unitOfWork.Users.GetUserById(id);
+					if(user == null)
+					{
+						return null;
+					}
+					return user;
+				}
+			}
+			catch(Exception e)
+			{
+				return null;
+			}
+		}
 	}
 }
