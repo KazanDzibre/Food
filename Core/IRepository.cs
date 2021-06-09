@@ -9,6 +9,8 @@ namespace Food.Core
 
 		void Remove(TEntity entity);
 
+		void Update(TEntity entity);
+
 		IEnumerable<TEntity> GetAll();
 	}
 }

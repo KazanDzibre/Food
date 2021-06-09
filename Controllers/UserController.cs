@@ -82,7 +82,7 @@ namespace Food.Controllers
 				return BadRequest("Something went wrong");
 			}
 		}
-		[HttpDelete("{id}")]
+		[HttpDelete("{id}")] //D
 		public void DeleteUser(int id)
 		{
 			User user = _userService.GetById(id);

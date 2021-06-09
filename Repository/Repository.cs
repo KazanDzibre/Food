@@ -38,5 +38,11 @@ namespace Food.Repository
 		{
 			return _context.Set<TEntity>().ToList();
 		}
+
+        public void Update(TEntity entity)
+        {
+			_context.Set<TEntity>().Attach(entity);
+			_context.Entry(entity).State = EntityState.Modified;
+        }
     }
 }
