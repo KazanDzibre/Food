@@ -20,6 +20,8 @@ namespace Food.Model
 		public double latitude { get; set; }
 
 		public ICollection<Order> Orders { get; set; }
+
+		public string RegistrationToken { get; set; }
 		
 		[JsonIgnore]
 		[Required]

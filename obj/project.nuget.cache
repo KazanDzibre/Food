@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ya0jkQasHfG00E/5W5/r5//nzQ2KVRYxubCAGnd0jxwf0PuSRcCe5OKskLL5z9UM3uyyRJhm/0o50Ssb/XTe2w==",
+  "dgSpecHash": "9kAYcX9SSi4dgECoxAkVW6rxZAIYXZzC5scjpkB8Sgwxh3ZEadfkT7z1h3gsfwYY8JxDr4/ff3TsnztkQzpN2Q==",
   "success": true,
-  "projectFilePath": "/home/aleksandar/Desktop/temp1/gitFood/Food/Food.csproj",
+  "projectFilePath": "/home/aleksandar/Desktop/temp1/Food/Food.csproj",
   "expectedPackageFiles": [
     "/home/aleksandar/.nuget/packages/automapper/10.1.1/automapper.10.1.1.nupkg.sha512",
     "/home/aleksandar/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/8.1.1/automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

@@ -5726,11 +5726,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/aleksandar/Desktop/temp1/gitFood/Food/Food.csproj",
+      "projectUniqueName": "/home/aleksandar/Desktop/temp1/Food/Food.csproj",
       "projectName": "Food",
-      "projectPath": "/home/aleksandar/Desktop/temp1/gitFood/Food/Food.csproj",
+      "projectPath": "/home/aleksandar/Desktop/temp1/Food/Food.csproj",
       "packagesPath": "/home/aleksandar/.nuget/packages/",
-      "outputPath": "/home/aleksandar/Desktop/temp1/gitFood/Food/obj/",
+      "outputPath": "/home/aleksandar/Desktop/temp1/Food/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/aleksandar/.nuget/NuGet/NuGet.Config"

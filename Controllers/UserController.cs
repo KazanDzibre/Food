@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Food.Configuration;
 using Food.Dtos;
 using Food.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +14,11 @@ namespace Food.Controllers
 	{
 		private readonly IMapper _mapper;
 
-		public UserController(IMapper mapper)
+		public UserController(IMapper mapper, ProjectConfiguration configuration) : base(configuration)
 		{
 			_mapper = mapper;
 		}
+
 
 		//POST /user
 		
@@ -36,6 +39,17 @@ namespace Food.Controllers
 			if (userModel != null)
 			{
 				return Ok(userModel);
+			}
+			return NotFound();
+		}
+
+		[HttpGet]
+		public ActionResult<IEnumerable<User>> GetAll()
+		{
+			var users = _userService.GetAll();
+			if(users != null)
+			{
+				return Ok(users);
 			}
 			return NotFound();
 		}

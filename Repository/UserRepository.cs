@@ -16,5 +16,15 @@ namespace Food.Repository
 		{
 			return context.Users.Where(x => x.Id == id).FirstOrDefault();
 		}
-	}
+
+        public User GetUserWithRegistratitonToken(string token)
+        {
+			return context.Users.Where(x => (x.RegistrationToken == token)).FirstOrDefault();
+        }
+
+        public User GetUserWithUserAndPass(string UserName, string Password)
+        {
+			return context.Users.Where(x => (x.UserName == UserName && x.Password == Password)).FirstOrDefault();
+        }
+    }
 }

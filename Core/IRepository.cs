@@ -6,5 +6,7 @@ namespace Food.Core
 	{
 		void Add(TEntity entity);
 		void AddRange(IEnumerable<TEntity> entities);
+
+		IEnumerable<TEntity> GetAll();
 	}
 }

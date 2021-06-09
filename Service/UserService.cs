@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Food.Configuration;
 using Food.Model;
 using Food.Repository;
 
@@ -8,6 +10,10 @@ namespace Food.Service
 	{
 		public UserService(){}
 
+		public UserService(ProjectConfiguration configuration)
+		{
+
+		}
 		public User Add(User user)
 		{
 			if(user == null)
@@ -44,6 +50,56 @@ namespace Food.Service
 				}
 			}
 			catch(Exception e)
+			{
+				return null;
+			}
+		}
+		
+		public IEnumerable<User> GetAll()
+		{
+			try
+			{
+				using(var unitOfWork = new UnitOfWork(new Context()))
+				{
+					var users = unitOfWork.Users.GetAll();
+					if(users == null)
+					{
+						return null;
+					}
+					return users;
+				}
+			}
+			catch(Exception e)
+			{
+				return null;
+			}
+
+		}
+
+		public User GetUserWithRegistrationToken(string token)
+		{
+			try
+			{
+				using(var unitOfWork = new UnitOfWork(new Context()))
+				{
+					return unitOfWork.Users.GetUserWithRegistratitonToken(token);
+				}
+			}
+			catch (Exception e)
+			{
+				return null;
+			}
+		}
+		public User GetUserWithUserAndPass(string UserName, string Password)
+		{
+			try
+			{
+				using(var unitOfWork = new UnitOfWork(new Context()))
+				{
+					return unitOfWork.Users.GetUserWithUserAndPass(UserName,Password);
+				}
+			}
+			catch (Exception e)
 			{
 				return null;
 			}

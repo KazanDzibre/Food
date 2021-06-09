@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Food.Core;
 using Food.Model;
 using Microsoft.EntityFrameworkCore;
@@ -28,5 +29,10 @@ namespace Food.Repository
         {
             throw new System.NotImplementedException();
         }
+		
+		public virtual IEnumerable<TEntity> GetAll()
+		{
+			return _context.Set<TEntity>().ToList();
+		}
     }
 }

@@ -1,3 +1,4 @@
+using Food.Configuration;
 using Food.Service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,12 @@ namespace Food.Controllers
 	{
 		protected UserService _userService;
 		// protected OrderService _orderService;
+		protected ProjectConfiguration _configuration;
 
-		public DefaultController()
+		public DefaultController(ProjectConfiguration configuration)
 		{
-			this._userService = new UserService();
+			this._configuration = configuration;
+			this._userService = new UserService(configuration);
 		}
 	}
 }
