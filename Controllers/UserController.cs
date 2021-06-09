@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -52,6 +53,28 @@ namespace Food.Controllers
 				return Ok(users);
 			}
 			return NotFound();
+		}
+
+		[Route("/api/user/create")]
+		[HttpPost]
+		public async Task<IActionResult> CreateUser(User userData)
+		{
+			User user = _userService.GetUserWithUserAndPass(userData.UserName,userData.Password);
+			if(user != null)
+			{
+				return BadRequest("User exists");
+			}
+
+			Boolean success = _userService.CreateUserAndSendToken(userData);
+
+			if(success)
+			{
+				return Ok();
+			}
+			else
+			{
+				return BadRequest("Something went wrong");
+			}
 		}
 
 	}

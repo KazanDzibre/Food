@@ -37,35 +37,36 @@ namespace Food
 
             services.AddControllers();
 
-			services.Configure<IISServerOptions>(options =>
-					{
-						options.AutomaticAuthentication = false;
-					});
+			// services.Configure<IISServerOptions>(options =>
+					// {
+						// options.AutomaticAuthentication = false;
+					// });
 
-			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-					{
-						options.RequireHttpsMetadata = false;
-						options.SaveToken = false;
-						options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
-						{
-							ValidateIssuer = true,
-							ValidateAudience = true,
-							ValidAudience = Configuration["ProjectConfiguration:Jwt:Audience"],
-							ValidIssuer = Configuration["ProjectConfiguration:Jwt:Issuer"],
-							IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["ProjectConfiguration:Jwt:Key"]))
-						};
-					});
+			// services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+					// {
+						// options.RequireHttpsMetadata = false;
+						// options.SaveToken = false;
+						// options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+						// {
+							// ValidateIssuer = true,
+							// ValidateAudience = true,
+							// ValidAudience = Configuration["ProjectConfiguration:Jwt:Audience"],
+							// ValidIssuer = Configuration["ProjectConfiguration:Jwt:Issuer"],
+							// IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["ProjectConfiguration:Jwt:Key"]))
+						// };
+					// });
 			services.AddDbContext<Context>(x => {
 					x.UseSqlServer(Configuration["ProjectConfiguration:DatabaseConfiguration:ConnectionString"]);
 					x.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 					});
 
-			services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
-						{
-							 builder.AllowAnyOrigin()
-									.AllowAnyMethod()
-									.AllowAnyHeader();
-						}));
+			services.AddCors();
+			// services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+						// {
+							 // builder.AllowAnyOrigin()
+									// .AllowAnyMethod()
+									// .AllowAnyHeader();
+						// }));
 			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 			var config = new ProjectConfiguration();
 			Configuration.Bind("ProjectConfiguration", config);
@@ -78,18 +79,23 @@ namespace Food
 
             app.UseRouting();
 
-			app.UseHttpsRedirection();
+			// app.UseHttpsRedirection();
 
-			app.UseForwardedHeaders(new ForwardedHeadersOptions
-					{
-						ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-					});
+			// app.UseForwardedHeaders(new ForwardedHeadersOptions
+					// {
+						// ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+					// });
 
-			app.UseAuthentication();
+			// app.UseAuthentication();
+			// app.UseAuthorization();
+
+			// app.UseCors("MyPolicy");
+
+			app.UseCors(x => x
+					.AllowAnyOrigin()
+					.AllowAnyMethod()
+					.AllowAnyHeader());
 			app.UseAuthorization();
-
-			app.UseCors("MyPolicy");
-
 			dataContext.Database.Migrate();
 
             app.UseEndpoints(endpoints =>

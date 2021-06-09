@@ -104,5 +104,27 @@ namespace Food.Service
 				return null;
 			}
 		}
+
+		public Boolean CreateUserAndSendToken(User user)
+		{
+			if(user == null)
+			{
+				return false;
+			}
+			try
+			{
+				using(var unitOfWork = new UnitOfWork(new Context()))
+				{
+					user.RegistrationToken = Guid.NewGuid().ToString();
+					unitOfWork.Users.Add(user);
+					unitOfWork.Complete();
+				}
+			}
+			catch(Exception e)
+			{
+				return false;
+			}
+			return true;
+		}
 	}
 }

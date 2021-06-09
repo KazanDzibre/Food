@@ -18,7 +18,6 @@ namespace Food.Dtos
 		public double longitude { get; set; }
 		public double latitude { get; set; }
 		
-		[JsonIgnore]
 		[Required]
 		public string Password { get; set; }
 	}
