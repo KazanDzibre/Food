@@ -76,6 +76,22 @@ namespace Food.Service
 
 		}
 
+		public void Remove(User user)
+		{
+			try
+			{
+				using(var unitOfWork = new UnitOfWork(new Context()))
+				{
+					unitOfWork.Users.Remove(user);
+					unitOfWork.Complete();
+				}
+			}
+			catch( Exception e )
+			{
+				//nothing
+			}
+		}
+
 		public User GetUserWithRegistrationToken(string token)
 		{
 			try

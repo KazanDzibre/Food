@@ -30,6 +30,10 @@ namespace Food.Repository
             throw new System.NotImplementedException();
         }
 		
+		public void Remove(TEntity entity)
+		{
+			_context.Set<TEntity>().Remove(entity);
+		}
 		public virtual IEnumerable<TEntity> GetAll()
 		{
 			return _context.Set<TEntity>().ToList();

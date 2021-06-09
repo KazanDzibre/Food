@@ -7,6 +7,8 @@ namespace Food.Core
 		void Add(TEntity entity);
 		void AddRange(IEnumerable<TEntity> entities);
 
+		void Remove(TEntity entity);
+
 		IEnumerable<TEntity> GetAll();
 	}
 }

@@ -46,8 +46,18 @@ namespace Food.Controllers
 			
 			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.Jwt.Key));
 			
-			var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+			var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 			var token = new JwtSecurityToken(_configuration.Jwt.Issuer, _configuration.Jwt.Audience, claims, expires: DateTime.UtcNow.AddDays(1), signingCredentials: signIn);
+
+			// var tokenHandler = new JwtSecurityTokenHandler();
+			// var key = Encoding.ASCII.GetBytes(_configuration.Jwt.Key);
+			// var tokenDescriptor = new SecurityTokenDescriptor
+			// {
+				// Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+				// Expires = DateTime.UtcNow.AddDays(7),
+				// SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+			// };
+			// var token = tokenHandler.CreateToken(tokenDescriptor);
 
 			return Ok(new JwtSecurityTokenHandler().WriteToken(token));
 		}

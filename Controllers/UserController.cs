@@ -25,7 +25,7 @@ namespace Food.Controllers
 		//POST /user
 		
 		[Authorize]
-		[HttpPost]
+		[HttpPost]   //c
 		public ActionResult<User> Register(UserRegisterDto userRegisterDto)
 		{
 			var userModel = _mapper.Map<User>(userRegisterDto);
@@ -35,7 +35,7 @@ namespace Food.Controllers
 			return Ok(user);
 		}
 
-		[HttpGet("{id}")]
+		[HttpGet("{id}")] //R
 		public ActionResult<User> GetUserById(int id)
 		{
 			var userModel = _userService.GetById(id);
@@ -46,7 +46,7 @@ namespace Food.Controllers
 			return NotFound();
 		}
 
-		[HttpGet]
+		[HttpGet]  //R A
 		public ActionResult<IEnumerable<User>> GetAll()
 		{
 			var users = _userService.GetAll();
@@ -58,7 +58,7 @@ namespace Food.Controllers
 		}
 
 		[Route("/api/user/create")]
-		[HttpPost]
+		[HttpPost] //C
 		public async Task<IActionResult> CreateUser(UserRegisterDto userData)
 		{
 
@@ -82,6 +82,11 @@ namespace Food.Controllers
 				return BadRequest("Something went wrong");
 			}
 		}
-
+		[HttpDelete("{id}")]
+		public void DeleteUser(int id)
+		{
+			User user = _userService.GetById(id);
+			_userService.Remove(user);
+		}
 	}
 }
