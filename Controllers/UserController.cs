@@ -5,6 +5,7 @@ using AutoMapper;
 using Food.Configuration;
 using Food.Dtos;
 using Food.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Food.Controllers
@@ -23,6 +24,7 @@ namespace Food.Controllers
 
 		//POST /user
 		
+		[Authorize]
 		[HttpPost]
 		public ActionResult<User> Register(UserRegisterDto userRegisterDto)
 		{
@@ -57,19 +59,23 @@ namespace Food.Controllers
 
 		[Route("/api/user/create")]
 		[HttpPost]
-		public async Task<IActionResult> CreateUser(User userData)
+		public async Task<IActionResult> CreateUser(UserRegisterDto userData)
 		{
+
 			User user = _userService.GetUserWithUserAndPass(userData.UserName,userData.Password);
 			if(user != null)
 			{
 				return BadRequest("User exists");
 			}
 
-			Boolean success = _userService.CreateUserAndSendToken(userData);
+
+			var userModel = _mapper.Map<User>(userData);
+
+			Boolean success = _userService.CreateUserAndSendToken(userModel);
 
 			if(success)
 			{
-				return Ok();
+				return Ok(userModel);
 			}
 			else
 			{

@@ -4,18 +4,22 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Food.Configuration;
+using Food.Dtos;
 using Food.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Food.Controllers
 {
+
+	[Route("api/[controller]")]
+	[ApiController]
 	public class TokenController : DefaultController
 	{
 		public TokenController(ProjectConfiguration configuration) : base(configuration){  }
 
 		[HttpPost]
-		public async Task<IActionResult> Post(User userData)
+		public async Task<IActionResult> Post(UserRegisterDto userData)
 		{
 			if(userData == null)
 			{
