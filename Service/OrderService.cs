@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Food.Configuration;
+using Food.Dtos;
 using Food.Model;
 using Food.Repository;
 
@@ -73,6 +74,47 @@ namespace Food.Service
 			catch(Exception e)
 			{
 				return null;
+			}
+		}
+
+		public bool UpdateOrder(int id, OrderPatchDto patchingOrder)
+		{
+			try
+			{
+				using(var unitOfWork = new UnitOfWork(new Context()))
+				{
+					Order orderToAsing = unitOfWork.Orders.GetOrderById(id);
+					if(orderToAsing == null)
+					{
+						return false;
+					}
+					unitOfWork.Orders.Update(orderToAsing);
+
+					orderToAsing.DriverId = patchingOrder.DriverId;
+
+					unitOfWork.Complete();
+				}
+			}
+			catch(Exception e)
+			{
+				return false;
+			}
+			return true;
+		}
+
+		public void Remove(Order order)
+		{
+			try
+			{
+				using(var unitOfWork = new UnitOfWork(new Context()))
+				{
+					unitOfWork.Orders.Remove(order);
+					unitOfWork.Complete();
+				}
+			}
+			catch(Exception e)
+			{
+				//nothing
 			}
 		}
 	}

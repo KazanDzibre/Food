@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AutoMapper;
 using Food.Configuration;
@@ -49,6 +50,20 @@ namespace Food.Controllers
 				return Ok(orders);
 			}
 			return NotFound();
+		}
+		
+		//PATCH /api/order/{id}
+		[HttpPatch("{id}")]
+		public bool AssignDriver(int id, OrderPatchDto patchingOrder)
+		{
+			return _orderService.UpdateOrder(id,patchingOrder);
+		}
+
+		[HttpDelete("{id}")]
+		public void DeleteOrder(int id)
+		{
+			Order order = _orderService.GetById(id);
+			_orderService.Remove(order);
 		}
 	}
 }
