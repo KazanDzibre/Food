@@ -21,6 +21,7 @@ namespace Food.Controllers
 
 		//Post
 		[HttpPost]
+		[Authorize("Dispatcher")]
 		public ActionResult<Order> CreateOrder(OrderRegisterDto orderRegisterDto)
 		{
 			var orderModel = _mapper.Map<Order>(orderRegisterDto);
@@ -54,6 +55,7 @@ namespace Food.Controllers
 		
 		//PATCH /api/order/{id}
 		[HttpPatch("{id}")]
+		[Authorize("Dispatcher")]
 		public bool AssignDriver(int id, OrderPatchDto patchingOrder)
 		{
 			return _orderService.UpdateOrder(id,patchingOrder);
