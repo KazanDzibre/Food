@@ -25,6 +25,7 @@ namespace Food.Controllers
 		//POST /user
 		
 		[HttpPost]   //c
+		[Authorize("Admin")]
 		public ActionResult<User> Register(UserRegisterDto userRegisterDto)
 		{
 			var userModel = _mapper.Map<User>(userRegisterDto);
@@ -32,6 +33,18 @@ namespace Food.Controllers
 			User user = _userService.Add(userModel);
 
 			return Ok(user);
+		}
+
+		[HttpPost("authenticate")]
+		public IActionResult Authenticate(AuthenticateRequest model)
+		{
+			var response = _userService.Authenticate(model);
+
+			if(response == null)
+			{
+				return BadRequest(new { message = "Wrong Username or Password!" });
+			}
+			return Ok(response);
 		}
 
 		[HttpGet("{id}")] //R

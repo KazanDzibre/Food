@@ -133,3 +133,4 @@
 /home/aleksandar/Desktop/temp1/gitFood/Food/obj/Debug/net5.0/ref/Food.dll
 /home/aleksandar/Desktop/temp1/gitFood/Food/obj/Debug/net5.0/Food.pdb
 /home/aleksandar/Desktop/temp1/gitFood/Food/obj/Debug/net5.0/Food.genruntimeconfig.cache
+/home/aleksandar/Desktop/temp1/Food/bin/Debug/net5.0/appsettings.Production.json

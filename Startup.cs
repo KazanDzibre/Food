@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Food.Configuration;
+using Food.Helpers;
 using Food.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -60,6 +61,8 @@ namespace Food
 					x.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 					});
 
+			services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
 			services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 						{
 							 builder.AllowAnyOrigin()
@@ -91,6 +94,8 @@ namespace Food
 			app.UseCors("MyPolicy");
 
 			dataContext.Database.Migrate();
+
+			app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
