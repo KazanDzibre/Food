@@ -24,7 +24,6 @@ namespace Food.Controllers
 
 		//POST /user
 		
-		[Authorize]
 		[HttpPost]   //c
 		public ActionResult<User> Register(UserRegisterDto userRegisterDto)
 		{

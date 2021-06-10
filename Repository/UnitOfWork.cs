@@ -12,10 +12,11 @@ namespace Food.Repository
 		{
 			this._context = _context;
 			Users = new UserRepository(this._context);	
-				
+			Orders = new OrderRepository(this._context);
 		}
 
 		public IUserRepository Users { get; private set; }
+		public IOrderRepository Orders { get; private set; }
 		
 		public Context context
 		{

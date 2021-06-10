@@ -9,13 +9,14 @@ namespace Food.Controllers
 	public class DefaultController : ControllerBase
 	{
 		protected UserService _userService;
-		// protected OrderService _orderService;
+		protected OrderService _orderService;
 		protected ProjectConfiguration _configuration;
 
 		public DefaultController(ProjectConfiguration configuration)
 		{
 			this._configuration = configuration;
 			this._userService = new UserService(configuration);
+			this._orderService = new OrderService(configuration);
 		}
 	}
 }
