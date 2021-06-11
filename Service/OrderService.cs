@@ -83,23 +83,33 @@ namespace Food.Service
 			{
 				using(var unitOfWork = new UnitOfWork(new Context()))
 				{
-					Order orderToAsing = unitOfWork.Orders.GetOrderById(id);
-					if(orderToAsing == null)
+					Console.WriteLine("To accept/decline order press: Y/N");
+					string answer = Console.ReadLine();
+					if(answer == "Y")
+					{
+						Order orderToAsing = unitOfWork.Orders.GetOrderById(id);
+						if(orderToAsing == null)
+						{
+							return false;
+						}
+						unitOfWork.Orders.Update(orderToAsing);
+
+						orderToAsing.DriverId = patchingOrder.DriverId;
+
+						unitOfWork.Complete();
+
+						return true;
+					}
+					else
 					{
 						return false;
 					}
-					unitOfWork.Orders.Update(orderToAsing);
-
-					orderToAsing.DriverId = patchingOrder.DriverId;
-
-					unitOfWork.Complete();
 				}
 			}
 			catch(Exception e)
 			{
 				return false;
 			}
-			return true;
 		}
 
 		public void Remove(Order order)
