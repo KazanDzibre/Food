@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Food.Core;
 using Food.Model;
@@ -26,5 +27,10 @@ namespace Food.Repository
         {
 			return context.Users.Where(x => (x.UserName == UserName && x.Password == Password)).FirstOrDefault();
         }
+
+		public IEnumerable<User> GetUsersByType(string type)
+		{
+			return context.Users.Where(x => ( x.Type == type )).ToList();
+		}
     }
 }

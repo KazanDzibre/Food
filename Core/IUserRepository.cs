@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Food.Model;
 
 namespace Food.Core
@@ -9,5 +10,7 @@ namespace Food.Core
 		User GetUserWithUserAndPass(string UserName, string Password);
 
 		User GetUserWithRegistratitonToken(string token);
+
+		IEnumerable<User> GetUsersByType(string Type);
 	}
 }
