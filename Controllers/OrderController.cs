@@ -61,6 +61,7 @@ namespace Food.Controllers
 			return _orderService.UpdateOrder(id,patchingOrder);
 		}
 
+		[Authorize("Dispatcher")]
 		[HttpDelete("{id}")]
 		public void DeleteOrder(int id)
 		{
