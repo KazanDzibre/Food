@@ -2,22 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using Food.Configuration;
+using Food.Core;
 using Food.Dtos;
 using Food.Model;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Food.Controllers
 {
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
-	public class UserController : DefaultController
+	public class UserController : ControllerBase 
 	{
-		private readonly IMapper _mapper;
+        private readonly IUserService _userService;
+        private readonly IMapper _mapper;
 
-		public UserController(IMapper mapper, ProjectConfiguration configuration) : base(configuration)
+		public UserController(IMapper mapper, IUserService userService)
 		{
+            _userService = userService;
 			_mapper = mapper;
 		}
 
@@ -50,7 +51,7 @@ namespace Food.Controllers
 		[HttpGet("{id}")] //R
 		public ActionResult<User> GetUserById(int id)
 		{
-			var userModel = _userService.GetById(id);
+			var userModel = _userService.GetUserById(id);
 			if (userModel != null)
 			{
 				return Ok(userModel);
@@ -97,7 +98,7 @@ namespace Food.Controllers
 		[HttpDelete("{id}")] //D
 		public void DeleteUser(int id)
 		{
-			User user = _userService.GetById(id);
+			User user = _userService.GetUserById(id);
 			_userService.Remove(user);
 		}
 	}

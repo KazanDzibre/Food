@@ -16,7 +16,7 @@ namespace Food.Controllers
 	[ApiController]
 	public class TokenController : DefaultController
 	{
-		public TokenController(ProjectConfiguration configuration) : base(configuration){  }
+		public TokenController(ProjectConfiguration configuration) : base(){  }
 
 		[HttpPost]
 		public async Task<IActionResult> Post(UserRegisterDto userData)

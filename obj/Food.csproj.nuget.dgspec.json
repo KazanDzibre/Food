@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/aleksandar/Desktop/temp1/Food/Food.csproj": {}
+    "/home/marko/Desktop/git/Food/Food.csproj": {}
   },
   "projects": {
-    "/home/aleksandar/Desktop/temp1/Food/Food.csproj": {
+    "/home/marko/Desktop/git/Food/Food.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/aleksandar/Desktop/temp1/Food/Food.csproj",
+        "projectUniqueName": "/home/marko/Desktop/git/Food/Food.csproj",
         "projectName": "Food",
-        "projectPath": "/home/aleksandar/Desktop/temp1/Food/Food.csproj",
-        "packagesPath": "/home/aleksandar/.nuget/packages/",
-        "outputPath": "/home/aleksandar/Desktop/temp1/Food/obj/",
+        "projectPath": "/home/marko/Desktop/git/Food/Food.csproj",
+        "packagesPath": "/home/marko/.nuget/packages/",
+        "outputPath": "/home/marko/Desktop/git/Food/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/aleksandar/.nuget/NuGet/NuGet.Config"
+          "/home/marko/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -95,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.300/RuntimeIdentifierGraph.json"
         }
       }
     }

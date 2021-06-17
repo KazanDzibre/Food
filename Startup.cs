@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Food.Configuration;
+using Food.Core;
 using Food.Helpers;
 using Food.Model;
+using Food.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -73,6 +75,9 @@ namespace Food
 			var config = new ProjectConfiguration();
 			Configuration.Bind("ProjectConfiguration", config);
 			services.AddSingleton(config);
+
+            services.AddScoped<IUserService,UserService>();
+            services.AddScoped<IOrderService,OrderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

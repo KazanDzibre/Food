@@ -12,11 +12,10 @@ namespace Food.Controllers
 		protected OrderService _orderService;
 		protected ProjectConfiguration _configuration;
 
-		public DefaultController(ProjectConfiguration configuration)
+		public DefaultController()
 		{
-			this._configuration = configuration;
-			this._userService = new UserService(configuration);
-			this._orderService = new OrderService(configuration);
+			this._userService = new UserService();
+			this._orderService = new OrderService();
 		}
 	}
 }

@@ -1,20 +1,16 @@
 using System;
 using System.Collections.Generic;
 using Food.Configuration;
+using Food.Core;
 using Food.Dtos;
 using Food.Model;
 using Food.Repository;
 
 namespace Food.Service
 {
-	public class OrderService
+	public class OrderService : IOrderService
 	{
 		public OrderService(){}
-
-		public OrderService(ProjectConfiguration configuration)
-		{
-
-		}
 
 		public Order Add(Order order)
 		{

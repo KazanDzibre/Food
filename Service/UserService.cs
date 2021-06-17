@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 using Food.Configuration;
+using Food.Core;
 using Food.Dtos;
 using Food.Helpers;
 using Food.Model;
@@ -13,16 +15,11 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Food.Service
 {
-	public class UserService
+	public class UserService : IUserService
 	{
         private readonly AppSettings _appSettings;
 
         public UserService(){}
-
-		public UserService(ProjectConfiguration configuration)
-		{
-
-		}
 
 		public UserService(IOptions<AppSettings> appSettings)
 		{
@@ -49,7 +46,7 @@ namespace Food.Service
 			return user;
 		}
 
-		public User GetById(int id)
+		public User GetUserById(int id)
 		{
 			try
 			{
@@ -191,5 +188,6 @@ namespace Food.Service
 			var token = tokenHandler.CreateToken(tokenDescriptor);
 			return tokenHandler.WriteToken(token);
 		}
-	}
+
+    }
 }

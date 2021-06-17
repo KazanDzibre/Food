@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using AutoMapper;
 using Food.Configuration;
+using Food.Core;
 using Food.Dtos;
 using Food.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -10,12 +11,14 @@ namespace Food.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class OrderController : DefaultController
+	public class OrderController : ControllerBase 
 	{
+        private readonly IOrderService _orderService;
         private readonly IMapper _mapper;
 
-        public OrderController(IMapper mapper, ProjectConfiguration configuration) : base(configuration)
+        public OrderController(IMapper mapper, IOrderService orderService) 
 		{
+            _orderService = orderService;
 			_mapper = mapper;
 		}
 

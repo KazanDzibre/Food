@@ -49,7 +49,7 @@ namespace Food.Helpers
 
 			var jwtToken = (JwtSecurityToken)validatedToken;
 			var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
-			context.Items["User"] = _userService.GetById(userId);
+			context.Items["User"] = _userService.GetUserById(userId);
 			}
 			catch(Exception e)
 			{
